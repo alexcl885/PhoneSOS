@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">app_Tema1</string>
+    <string name="volver_atras">VOLVER ATRAS</string>
+
+    <string name="nombre_fichero_preferencia_compartida">fichero_compartido</string>
+    <string name="numero_telefono">numero_telefono</string>
+</resources>
