@@ -4,4 +4,6 @@
 
     <string name="nombre_fichero_preferencia_compartida">fichero_compartido</string>
     <string name="numero_telefono">numero_telefono</string>
+
+    <string name="llamar">LLAMAR</string>
 </resources>

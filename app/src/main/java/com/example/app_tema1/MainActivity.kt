@@ -3,19 +3,23 @@ package com.example.app_tema1
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.AlarmClock
 import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var iv_gitHub : ImageView
     private lateinit var iv_maps : ImageView
     private lateinit var iv_phone : ImageView
-    private lateinit var iv_email : ImageView
+    private lateinit var iv_alarma : ImageView
     private lateinit var intent :Intent
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         iv_gitHub = findViewById(R.id.iv6)
         iv_maps = findViewById(R.id.iv5)
         iv_phone = findViewById(R.id.iv3)
-        iv_email = findViewById(R.id.iv4)
+        iv_alarma = findViewById(R.id.iv4)
 
 
 
@@ -45,11 +49,8 @@ class MainActivity : AppCompatActivity() {
          * Hacemos que al pulsar el boton de email nos mande a la pagina web de Email
          *  @param url es la URL donde se situa gmail
          * */
-        iv_email.setOnClickListener{
-            val url = "https://mail.google.com"
-            intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(url)
-            startActivity(intent)
+        iv_alarma.setOnClickListener{
+            poner_alarma()
         }
 
 
@@ -74,6 +75,16 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+    /**
+     * Metodo que pone una alarma
+     * */
+    private fun poner_alarma(){
+        val intent_alarm = Intent(AlarmClock.ACTION_SET_ALARM).apply {
+            putExtra(AlarmClock.EXTRA_MESSAGE, "alarma")
+            putExtra(AlarmClock.EXTRA_MINUTES, 2)
+        }
+        startActivity(intent_alarm)
     }
 
 

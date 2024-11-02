@@ -60,7 +60,7 @@ class ConfigPhone : AppCompatActivity() {
             val numero_telefono = confBinding.editTextPhone.text.toString() //cogemos el numero de telefono que habremos escrito
 
             if (numero_telefono.isEmpty()){
-                Toast.makeText(this, "Numero no valido", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Texto vacio, introduce un numero de telefono", Toast.LENGTH_LONG).show()
             }
             else{
                 if (!comprobarNumeroEspañol(numero_telefono)){
@@ -77,6 +77,7 @@ class ConfigPhone : AppCompatActivity() {
         /*Boton para volver atras al pulsarlo*/
         confBinding.btAtras.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("back", true)
             startActivity(intent)
         }
     }
@@ -101,5 +102,19 @@ class ConfigPhone : AppCompatActivity() {
             addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)//no te crea el activity te coge el creado
         }
         startActivity(intent)
+    }
+/*
+* Metodo de configuracion para comprobar si venimos del mismo activity o del otro
+*
+* */
+    override fun onResume() {
+        super.onResume()
+        val ret = intent.getBooleanExtra("back", false)
+        if (ret){
+            confBinding.editTextPhone.setText("")
+            Toast.makeText(this, "mensaje del numero de telefono nuevo", Toast.LENGTH_LONG)
+            intent.removeExtra("back")
+        }
+
     }
 }
